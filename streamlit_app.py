@@ -24,7 +24,7 @@ async def bisaya_chatbot_response(user_input):
     except Exception as e:
         return f"Error: {str(e)}"
 
-async def main():
+def main():
     st.title('Bisaya Speaking Chatbot')
     user_input = st.text_input("Type in English and the chatbot will reply in Bisaya:")
     
