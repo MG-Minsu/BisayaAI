@@ -16,7 +16,11 @@ async def bisaya_chatbot_response(user_input):
         
         # Correct API call using the latest API version
         response = await client.chat.completions.create(
-            engine="text-davinci-003",  # Using a suitable model for chat-like interactions
+            model="gpt-3.5-turbo", 
+            messages=[
+                {"role": "system", "content": "You are a chatbot that converses in Bisaya."},
+                {"role": "user", "content": user_input}
+            ],# Using a suitable model for chat-like interactions
             prompt=prompt_text,
             max_tokens=100,
             temperature=0.9,
