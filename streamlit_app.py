@@ -13,7 +13,7 @@ async def bisaya_chatbot_response(user_input):
         prompt_text = f"Assume you are a chatbot fluent in Bisaya. An English speaker is talking to you, and you need to reply in Bisaya. Here's the conversation:\n\nEnglish: {user_input}\nBisaya:"
         
         # Correct API call using the latest API version
-        response = openai.chat.completions.create(
+        response = client.chat.completions.create(
             model="GPT-3.5-turbo-0125",  # Assuming using a suitable model for chat-like interactions
             prompt=prompt_text,
             max_tokens=100,
