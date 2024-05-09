@@ -2,8 +2,8 @@ import streamlit as st
 from openai import AsyncOpenAI
 import asyncio
 
-# Set the API key using Streamlit's secrets management
-openai_client = AsyncOpenAI(api_key=st.secrets["API_key"])
+# Set the API key using Streamlit's secrets managemen
+client = AsyncOpenAI(api_key=st.secrets["API_key"])
 
 
 async def bisaya_chatbot_response(user_input):
