@@ -3,7 +3,6 @@ import pandas as pd
 import streamlit as st
 import altair as alt
 import openai
-openai.api_key = st.secrets["API_key"]
 import hashlib
 
 
