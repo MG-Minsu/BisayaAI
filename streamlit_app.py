@@ -13,7 +13,7 @@ def bisaya_chatbot_response(user_input):
         response = openai.ChatCompletion.create(
             model="gpt-3.5-turbo",  # Assuming using the latest appropriate model available
             prompt=prompt_text,
-            max_tokens=150,
+            max_tokens=100,
             temperature=0.9,
             stop=["\n", " English:", " Bisaya:"]
         )
