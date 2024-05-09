@@ -4,23 +4,24 @@ import openai
 
 openai.api_key = st.secrets["API_key"]
 
+
 def bisaya_chatbot_response(user_input):
     try:
         # Constructing a prompt for a chatbot that replies in Bisaya
         prompt_text = f"Assume you are a chatbot fluent in Bisaya. An English speaker is talking to you, and you need to reply in Bisaya. Here's the conversation:\n\nEnglish: {user_input}\nBisaya:"
         
-        # OpenAI API call
-        response = openai.Completion.create(
-            engine="text-davinci-003",  # Or the latest available model
-            prompt=prompt_text,
+        # OpenAI API call updated for API version 1.0.0+
+        response = openai.ChatCompletion.create(
+            model="gpt-3.5-turbo",  # Use the most appropriate model available
+            messages=[
+                {"role": "system", "content": "You are a chatbot that converses in Bisaya."},
+                {"role": "user", "content": user_input}
+            ],
             max_tokens=150,
             temperature=0.9,
-            top_p=1,
-            frequency_penalty=0.0,
-            presence_penalty=0.6,
             stop=["\n", " English:", " Bisaya:"]
         )
-        return response.choices[0].text.strip()
+        return response['choices'][0]['message']['content']
     except Exception as e:
         return f"Error: {str(e)}"
 
@@ -34,4 +35,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
