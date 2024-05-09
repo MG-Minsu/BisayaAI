@@ -1,5 +1,5 @@
 import streamlit as st
-from openai import OpenAI
+import openai
 
 # It's good practice to secure your API key using Streamlit's secrets management
 openai.api_key = st.secrets["API_key"]
