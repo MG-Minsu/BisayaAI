@@ -24,7 +24,7 @@ async def bisaya_chatbot_response(user_input):
     
             stop=["\n", " English:", " Bisaya:"]
         )
-        return response.choices[0].text.strip()  # Correcting the key from 'text' to match the API response structure
+        return response.choices[0].messages.content  # Correcting the key from 'text' to match the API response structure
     except Exception as e:
         return f"Error: {str(e)}"
 
