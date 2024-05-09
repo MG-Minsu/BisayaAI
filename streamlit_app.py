@@ -7,7 +7,6 @@ openai_client = AsyncOpenAI(api_key=st.secrets["API_key"])
 
 
 async def bisaya_chatbot_response(user_input):
-    try:
         # Constructing a prompt for a chatbot that replies in Bisaya
         prompt_text = f"Assume you are a chatbot fluent in Bisaya. An English speaker is talking to you, and you need to reply in Bisaya. Here's the conversation:\n\nEnglish: {user_input}\nBisaya:"
 
@@ -15,16 +14,12 @@ async def bisaya_chatbot_response(user_input):
         response = await client.chat.completions.create(
             model="gpt-3.5-turbo", 
             messages=[
-                {"role": "system", "content": "You are a chatbot that converses in Bisaya."},
+                {"role": "system", "content": prompt_text},
                 {"role": "user", "content": user_input}
-            ],# Using a suitable model for chat-like interactions
+            ]),# Using a suitable model for chat-like interactions
     
             stop=["\n", " English:", " Bisaya:"]
-        )
         return response.choices[0].message.content  # Correcting the key from 'text' to match the API response structure
-    except Exception as e:
-        print(f"Error: {str(e)}")
-        return None
 
 
 async def setup_streamlit_app():
