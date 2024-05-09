@@ -16,9 +16,9 @@ async def bisaya_chatbot_response(user_input):
             messages=[
                 {"role": "system", "content": prompt_text},
                 {"role": "user", "content": user_input}
-            ]),# Using a suitable model for chat-like interactions
+            ],# Using a suitable model for chat-like interactions
     
-            stop=["\n", " English:", " Bisaya:"]
+            stop=["\n", " English:", " Bisaya:"])
         return response.choices[0].message.content  # Correcting the key from 'text' to match the API response structure
 
 
