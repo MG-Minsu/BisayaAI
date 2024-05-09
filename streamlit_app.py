@@ -1,16 +1,19 @@
 import streamlit as st
-import openai
+from openai import OpenAI
+from openai import AsyncOpenAI
 
 # Set the API key using Streamlit's secrets management
-openai.api_key = st.secrets["API_key"]
+client = AsyncOpenAI(
+    api_key=st.secrets["API_key"],
+)
 
-def bisaya_chatbot_response(user_input):
+async def bisaya_chatbot_response(user_input):
     try:
         # Constructing a prompt for a chatbot that replies in Bisaya
         prompt_text = f"Assume you are a chatbot fluent in Bisaya. An English speaker is talking to you, and you need to reply in Bisaya. Here's the conversation:\n\nEnglish: {user_input}\nBisaya:"
         
         # Correct API call using the latest API version
-        response = openai.ChatCompletion.create(
+        response = openai.chat.completions.create(
             model="gpt-3.5-turbo",  # Assuming using a suitable model for chat-like interactions
             prompt=prompt_text,
             max_tokens=100,
