@@ -8,7 +8,7 @@ client = AsyncOpenAI(
     api_key=st.secrets["API_key"],
 )
 
-async def bisaya_chatbot_response(user_input):
+def bisaya_chatbot_response(user_input):
     try:
         # Constructing a prompt for a chatbot that replies in Bisaya
         prompt_text = f"Assume you are a chatbot fluent in Bisaya. An English speaker is talking to you, and you need to reply in Bisaya. Here's the conversation:\n\nEnglish: {user_input}\nBisaya:"
@@ -25,7 +25,7 @@ async def bisaya_chatbot_response(user_input):
     except Exception as e:
         return f"Error: {str(e)}"
 
-async def main():
+def main():
     st.title('Bisaya Speaking Chatbot')
     user_input = st.text_input("Type in English and the chatbot will reply in Bisaya:")
     
