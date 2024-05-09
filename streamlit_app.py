@@ -15,7 +15,7 @@ async def bisaya_chatbot_response(user_input):
         prompt_text = f"Assume you are a chatbot fluent in Bisaya. An English speaker is talking to you, and you need to reply in Bisaya. Here's the conversation:\n\nEnglish: {user_input}\nBisaya:"
         
         # Correct API call using the latest API version
-        response = await client.Completion.create(
+        response = await client.chat.completions.create(
             engine="text-davinci-003",  # Using a suitable model for chat-like interactions
             prompt=prompt_text,
             max_tokens=100,
