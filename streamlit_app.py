@@ -1,6 +1,7 @@
 import streamlit as st
 from openai import OpenAI
 from openai import AsyncOpenAI
+import asyncio
 
 # Set the API key using Streamlit's secrets management
 client = AsyncOpenAI(
@@ -24,7 +25,7 @@ async def bisaya_chatbot_response(user_input):
     except Exception as e:
         return f"Error: {str(e)}"
 
-def main():
+async def main():
     st.title('Bisaya Speaking Chatbot')
     user_input = st.text_input("Type in English and the chatbot will reply in Bisaya:")
     
