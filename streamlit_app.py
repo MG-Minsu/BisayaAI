@@ -34,7 +34,7 @@ async def setup_streamlit_app():
 
     if send_button:
         chatbot_response = await bisaya_chatbot_response(user_input)
-        st.text_area("Chatbot says (in Bisaya):", value=chatbot_response, height=200)
+        st.text_area("Chatbot says (in Bisaya):", value=chatbot_response)
 
 
 if __name__ == "__main__":
