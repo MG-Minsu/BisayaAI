@@ -14,7 +14,7 @@ async def bisaya_chatbot_response(user_input):
         
         # Correct API call using the latest API version
         response = openai.chat.completions.create(
-            model="gpt-3.5-turbo",  # Assuming using a suitable model for chat-like interactions
+            model="GPT-3.5-turbo-0125",  # Assuming using a suitable model for chat-like interactions
             prompt=prompt_text,
             max_tokens=100,
             temperature=0.9,
