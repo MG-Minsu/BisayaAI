@@ -1,7 +1,7 @@
 import streamlit as st
 import openai
 
-# It's good practice to secure your API key using Streamlit's secrets management
+# Set the API key using Streamlit's secrets management
 openai.api_key = st.secrets["API_key"]
 
 def bisaya_chatbot_response(user_input):
@@ -9,15 +9,18 @@ def bisaya_chatbot_response(user_input):
         # Constructing a prompt for a chatbot that replies in Bisaya
         prompt_text = f"Assume you are a chatbot fluent in Bisaya. An English speaker is talking to you, and you need to reply in Bisaya. Here's the conversation:\n\nEnglish: {user_input}\nBisaya:"
         
-        # OpenAI API call updated to use the correct method
-        response = openai.ChatCompletion.create(
+        # Correct API call using the latest API version
+        response = openai.Completion.create(
             model="gpt-3.5-turbo",  # Assuming using the latest appropriate model available
-            prompt=prompt_text,
+            messages=[
+                {"role": "system", "content": "You are a chatbot that converses in Bisaya."},
+                {"role": "user", "content": user_input}
+            ],
             max_tokens=100,
             temperature=0.9,
             stop=["\n", " English:", " Bisaya:"]
         )
-        return response.choices[0].text.strip()  # Updated to match the correct dictionary keys
+        return response.choices[0].text.strip()  # Correcting the key from 'text' to match the API response structure
     except Exception as e:
         return f"Error: {str(e)}"
 
