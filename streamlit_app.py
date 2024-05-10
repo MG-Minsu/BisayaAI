@@ -31,7 +31,7 @@ async def setup_streamlit_app():
     # Use a more descriptive title and add a subtitle to provide context
         st.image('gensan.png', width=730)
         st.title("MatyoAI: A Taga-Gensan Chatbot")
-        st.write("Welcome to MatyoAI! Here, you'll find a chatbot ready to guide you through the wonders of General Santos City, speaking in the warm tones of the local Bisaya language. Created by Mathew gabriel, with the invaluable assistance of a college professor, Sir Louie Cervantes. This project is from the College of Information and Communictions Technology - WVSU. ")
+        st.write("Welcome to MatyoAI! Here, you'll find a chatbot ready to guide you through the wonders of General Santos City, speaking in the warm tones of the local Bisaya language. Created by Mathew Gabriel, with the invaluable assistance of a college professor, Sir Louie Cervantes. This project is from the College of Information and Communictions Technology - WVSU. ")
         st.write("This project aims to provide tourists with personalized and authentic experiences. Whether you're seeking the best local eateries, hidden gems, or cultural landmarks, MatyoAI is here to ensure your visit to General Santos is unforgettable. Sit back, relax, and let MatyoAI be your virtual tour guide through the vibrant streets and rich heritage of this bustling city.")
         conversation_history = st.empty()
         if 'history' not in st.session_state:
