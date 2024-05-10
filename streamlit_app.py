@@ -23,13 +23,25 @@ async def bisaya_chatbot_response(user_input):
 
 
 async def setup_streamlit_app():
-    st.title('Bisaya Speaking Chatbot')
-    user_input = st.text_input("Type in English and the chatbot will reply in Bisaya:")
-    send_button = st.button("Send")
-
-    if send_button:
-        chatbot_response = await bisaya_chatbot_response(user_input)
-        st.text_area("Chatbot says (in Bisaya):", value=chatbot_response)
+    # Use a more descriptive title and add a subtitle to provide context
+        st.title('Bisaya Speaking Chatbot')
+        st.subheader('Type in English and get a response in Bisaya')
+        
+        # Use a more intuitive variable name and add a placeholder for user input
+        user_message = st.text_input('Enter your message...', placeholder='Type here...')
+        
+        # Use a more descriptive button label and add some space around it
+        send_button = st.button('Send Message', key='send_button')
+        
+        # Use a conditional statement to handle the button click event
+        if send_button:
+            # Use a try-except block to handle any errors that may occur
+            try:
+                chatbot_response = await bisaya_chatbot_response(user_message)
+                # Use a more descriptive label and add some formatting to the response
+                st.markdown(f'**Chatbot says (in Bisaya):**\n{chatbot_response}')
+            except Exception as e:
+                st.error(f'Error: {e}')
 
 
 if __name__ == "__main__":
