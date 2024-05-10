@@ -29,10 +29,10 @@ async def setup_streamlit_app():
 
         user_input = st.text_area("You:", height=100, max_chars=500)
         if st.button("Send"):
-        if user_input.strip() != "":
-            with st.spinner("Generating response..."):
-                response = bisaya_chatbot_response(user_input)
-            st.text_area("ChatGPT:", value=response, height=200)
+                if user_input.strip() != "":
+                    with st.spinner("Generating response..."):
+                        response = await bisaya_chatbot_response(user_input)
+                    st.text_area("ChatGPT:", value=response, height=200)
                 
 
 if __name__ == "__main__":
