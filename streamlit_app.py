@@ -33,7 +33,7 @@ async def setup_streamlit_app():
                 if user_input.strip() != "":
                     with st.spinner("Generating response..."):
                         response = generate_response(user_input)
-                    conversation_history.text_area("Conversation:", value=f"You: {user_input}\nChatGPT: {response}\n", height=300)
+                        conversation_history.text_area("Conversation:", value=f"You: {user_input}\nChatGPT: {response}\n", height=300)
                 
 
 if __name__ == "__main__":
