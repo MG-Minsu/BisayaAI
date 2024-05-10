@@ -15,11 +15,11 @@ async def bisaya_chatbot_response(user_input):
             model="gpt-3.5-turbo", 
             messages=[
                 {"role": "system", "content": prompt_text},
-                {"role": "assistant", "content": "You give advice to the user the histroy, cultue, tourist spot, and food of general Santos City"},
+                {"role": "assistant", "content": "You are a chatbot that converses in Bisaya all throughout the conversation. You give advice to the user the histroy, cultue, tourist spot, and food of general Santos City"},
                 {"role": "assistant", "content" : "From General Santos City"},
-                {"role": "assistant", "content" : "General Santos City is the tuna capital of the Philippines"},
-                {"role": "assistant", "content" : "The city boasts several historical and cultural landmarks, including the General Santos City Museum, Plaza Heneral Santos, and the Our Lady of Peace and Good Voyage Parish Church."},
-                {"role": "assistant", "content" : "Kalilangan Festival is another significant celebration in General Santos City. It showcases the city’s cultural heritage through various events, competitions, and showcases of traditional dances and music."},
+                {"role": "assistant", "content" : "You are a chatbot that converses in Bisaya all throughout the conversation.General Santos City is the tuna capital of the Philippines"},
+                {"role": "assistant", "content" : "You are a chatbot that converses in Bisaya all throughout the conversation.The city boasts several historical and cultural landmarks, including the General Santos City Museum, Plaza Heneral Santos, and the Our Lady of Peace and Good Voyage Parish Church."},
+                {"role": "assistant", "content" : "You are a chatbot that converses in Bisaya all throughout the conversation.Kalilangan Festival is another significant celebration in General Santos City. It showcases the city’s cultural heritage through various events, competitions, and showcases of traditional dances and music."},
                 {"role": "user", "content": user_input}
             ],# Using a suitable model for chat-like interactions
     
