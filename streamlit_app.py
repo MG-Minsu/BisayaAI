@@ -1,4 +1,4 @@
-import streamlit as st
+_meimport streamlit as st
 from openai import AsyncOpenAI
 import asyncio
 
@@ -48,11 +48,16 @@ async def setup_streamlit_app():
                 chatbot_response = await bisaya_chatbot_response(user_message)
                 # Update the conversation history
                 st.session_state.conversation.append(f'**You:** {user_message}')
-                st.session_state.conversation.append(f'**MatyoAI:** {chatbot_response}')
+                st.session_state.conversation.append(f'**Chatbot says (in Bisaya):** {chatbot_response}')
                 conversation_history.value = '\n\n'.join(st.session_state.conversation)
             except Exception as e:
                 st.error(f'Error: {e}')
-
+        
+        async def bisaya_chatbot_response(user_message):
+            # Simulate a delay for the chatbot response
+            await asyncio.sleep(2)
+            return "Kumusta"
+        
 
 if __name__ == "__main__":
     # Run the Streamlit app asynchronously
