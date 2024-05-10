@@ -15,7 +15,7 @@ async def bisaya_chatbot_response(user_input):
             model="gpt-3.5-turbo", 
             messages=[
                 {"role": "system", "content": prompt_text},
-                {"role": "system", "content": "You give advice to the user the histroy, cultue, tourist spot, and food of general Santos City"},
+                {"role": "assistant", "content": "You give advice to the user the histroy, cultue, tourist spot, and food of general Santos City"},
                 {"role": "assistant", "content" : "From General Santos City"},
                 {"role": "assistant", "content" : "General Santos City is the tuna capital of the Philippines"},
                 {"role": "assistant", "content" : "The city boasts several historical and cultural landmarks, including the General Santos City Museum, Plaza Heneral Santos, and the Our Lady of Peace and Good Voyage Parish Church."},
