@@ -25,13 +25,14 @@ async def bisaya_chatbot_response(user_input):
 
 async def setup_streamlit_app():
     # Use a more descriptive title and add a subtitle to provide context
-        st.title('Bisaya Speaking Chatbot') 
-        user_input = st.text_input("Type in English and the chatbot will reply in Bisaya:") 
-        send_button = st.button("Send")
+        st.title("ChatGPT")
 
-        if send_button:
-            chatbot_response = await bisaya_chatbot_response(user_input)
-            st.text_area("Chatbot says (in Bisaya):", value=chatbot_response)
+        user_input = st.text_area("You:", height=100, max_chars=500)
+        if st.button("Send"):
+        if user_input.strip() != "":
+            with st.spinner("Generating response..."):
+                response = bisaya_chatbot_response(user_input)
+            st.text_area("ChatGPT:", value=response, height=200)
                 
 
 if __name__ == "__main__":
