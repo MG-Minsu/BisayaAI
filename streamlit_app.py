@@ -28,8 +28,15 @@ async def setup_streamlit_app():
         st.title('Bisaya Speaking Chatbot')
         st.subheader('Type in English and get a response in Bisaya')
         
+        # Create a text area to display the conversation history
+        conversation_history = st.text_area('Conversation History:', height=300, disabled=True)
+        
+        # Use a conditional statement to handle the button click event
+        if 'conversation' not in st.session_state:
+            st.session_state.conversation = []
+        
         # Use a more intuitive variable name and add a placeholder for user input
-        user_message = st.text_input('Enter your message...', placeholder='Type here...')
+        user_message = st.text_input('Enter your message...', placeholder='Type here...', key='user_input')
         
         # Use a more descriptive button label and add some space around it
         send_button = st.button('Send Message', key='send_button')
@@ -39,8 +46,10 @@ async def setup_streamlit_app():
             # Use a try-except block to handle any errors that may occur
             try:
                 chatbot_response = await bisaya_chatbot_response(user_message)
-                # Use a more descriptive label and add some formatting to the response
-                st.markdown(f'**Chatbot says (in Bisaya):**\n{chatbot_response}')
+                # Update the conversation history
+                st.session_state.conversation.append(f'**You:** {user_message}')
+                st.session_state.conversation.append(f'**Chatbot says (in Bisaya):** {chatbot_response}')
+                conversation_history.value = '\n\n'.join(st.session_state.conversation)
             except Exception as e:
                 st.error(f'Error: {e}')
 
