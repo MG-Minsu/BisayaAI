@@ -53,11 +53,6 @@ async def setup_streamlit_app():
             except Exception as e:
                 st.error(f'Error: {e}')
         
-        async def bisaya_chatbot_response(user_message):
-            # Simulate a delay for the chatbot response
-            await asyncio.sleep(2)
-            return "Kumusta"
-        
 
 if __name__ == "__main__":
     # Run the Streamlit app asynchronously
