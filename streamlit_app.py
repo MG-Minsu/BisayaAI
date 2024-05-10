@@ -25,8 +25,8 @@ async def bisaya_chatbot_response(user_input):
 
 async def setup_streamlit_app():
     # Use a more descriptive title and add a subtitle to provide context
-        st.title("ChatGPT")
-        
+        st.title("MatyoAI: A Bisayan Chatbot")
+        st.write("Introducing MatyoAI, your friendly AI assistant from Gensan! Whether you have questions or need something translated into Bisaya, \nMatyoAI is here to help. Don't hesitate to ask!")
         conversation_history = st.empty()
         if 'history' not in st.session_state:
                 st.session_state.history = ""
