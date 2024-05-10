@@ -8,7 +8,7 @@ client = AsyncOpenAI(api_key=st.secrets["API_key"])
 
 async def bisaya_chatbot_response(user_input):
         # Constructing a prompt for a chatbot that replies in Bisaya
-        prompt_text = "You are a chatbot that converses in Bisaya."
+        prompt_text = "You are a chatbot that converses in Bisaya all throughout the conversation."
 
         # Correct API call using the latest API version
         response = await client.chat.completions.create(
