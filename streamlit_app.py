@@ -8,13 +8,14 @@ client = AsyncOpenAI(api_key=st.secrets["API_key"])
 
 async def bisaya_chatbot_response(user_input):
         # Constructing a prompt for a chatbot that replies in Bisaya
-        prompt_text = "You are a chatbot that converses in Bisaya.You live in General Santos City. You love to eat tuna. A frienfly 21 year old conyo"
+        prompt_text = "You are a chatbot that converses in Bisaya."
 
         # Correct API call using the latest API version
         response = await client.chat.completions.create(
             model="gpt-3.5-turbo", 
             messages=[
                 {"role": "system", "content": prompt_text},
+                {"role": "assistant", "content" : "From General Santos City"},
                 {"role": "user", "content": user_input}
             ],# Using a suitable model for chat-like interactions
     
