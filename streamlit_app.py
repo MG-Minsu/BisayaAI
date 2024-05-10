@@ -29,7 +29,7 @@ async def setup_streamlit_app():
         st.subheader('Type in English and get a response in Bisaya')
         
         # Create a text area to display the conversation history
-        conversation_history = st.text_area('Conversation History:', height=300, disabled=True)
+        conversation_history = st.text_area('', height=300, key='conversation_history')
         
         # Use a conditional statement to handle the button click event
         if 'conversation' not in st.session_state:
