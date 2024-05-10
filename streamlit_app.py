@@ -48,7 +48,7 @@ async def setup_streamlit_app():
                 chatbot_response = await bisaya_chatbot_response(user_message)
                 # Update the conversation history
                 st.session_state.conversation.append(f'**You:** {user_message}')
-                st.session_state.conversation.append(f'**Chatbot says (in Bisaya):** {chatbot_response}')
+                st.session_state.conversation.append(f'**MatyoAI:** {chatbot_response}')
                 conversation_history.value = '\n\n'.join(st.session_state.conversation)
             except Exception as e:
                 st.error(f'Error: {e}')
