@@ -8,14 +8,18 @@ client = AsyncOpenAI(api_key=st.secrets["API_key"])
 
 async def bisaya_chatbot_response(user_input):
         # Constructing a prompt for a chatbot that replies in Bisaya
-        prompt_text = "You are a chatbot that converses in Bisaya all throughout the conversation."
+        prompt_text = "You are a chatbot that converses in Bisaya all throughout the conversation because you are a tourist guide in General santos City and knows all the history."
 
         # Correct API call using the latest API version
         response = await client.chat.completions.create(
             model="gpt-3.5-turbo", 
             messages=[
                 {"role": "system", "content": prompt_text},
+                {"role": "system", "content": "You give advice to the user the histroy, cultue, tourist spot, and food of general Santos City"},
                 {"role": "assistant", "content" : "From General Santos City"},
+                {"role": "assistant", "content" : "General Santos City is the tuna capital of the Philippines"},
+                {"role": "assistant", "content" : "The city boasts several historical and cultural landmarks, including the General Santos City Museum, Plaza Heneral Santos, and the Our Lady of Peace and Good Voyage Parish Church."},
+                {"role": "assistant", "content" : "Kalilangan Festival is another significant celebration in General Santos City. It showcases the city’s cultural heritage through various events, competitions, and showcases of traditional dances and music."},
                 {"role": "user", "content": user_input}
             ],# Using a suitable model for chat-like interactions
     
