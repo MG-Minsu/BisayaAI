@@ -31,7 +31,7 @@ async def setup_streamlit_app():
         if st.button("Send"):
                 if user_input.strip() != "":
                         with st.spinner("Generating response..."):
-                                response = generate_response(user_input)
+                                response = await bisaya_chatbot_response(user_input)
                 conversation_history.text_area("Conversation:", value=f"You: {user_input}\nChatGPT: {response}\n", height=300)
                         
 
