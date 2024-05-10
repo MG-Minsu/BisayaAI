@@ -26,13 +26,18 @@ async def bisaya_chatbot_response(user_input):
 async def setup_streamlit_app():
     # Use a more descriptive title and add a subtitle to provide context
         st.title("ChatGPT")
+        
         conversation_history = st.empty()
+        if 'history' not in st.session_state:
+                st.session_state.history = ""
+                
         user_input = st.text_input("You:")
         if st.button("Send"):
                 if user_input.strip() != "":
                         with st.spinner("Generating response..."):
-                                response = await bisaya_chatbot_response(user_input)
-                conversation_history.text_area("Conversation:", value=f"You: {user_input}\nChatGPT: {response}\n", height=300)
+                                response = generate_response(user_input)
+                st.session_state.history += f"You: {user_input}\nMatyoAI: {response}\n"
+                conversation_history.text_area("Conversation:", value=st.session_state.history, height=300)
                         
 
 if __name__ == "__main__":
