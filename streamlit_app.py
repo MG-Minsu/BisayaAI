@@ -48,6 +48,19 @@ async def bisaya_chatbot_response(user_input):
         stop=["\n", " English:", " Bisaya:"])
     return response.choices[0].message.content  # Correcting the key from 'text' to match the API response structure
 
+async def guide_chatbot_response(user_input):
+    # Constructing a prompt for a chatbot that replies in Bisaya
+    prompt_text = "You are a chatbot that converses in Bisaya all throughout the conversation because you are a tourist guide in General Santos City"
+
+    # Correct API call using the latest API version
+    response = await client.chat.completions.create(
+        model="gpt-3.5-turbo", 
+        messages=[
+            {"role": "system", "content": prompt_text},
+            {"role": "user", "content": user_input}
+        ],
+        stop=["\n", " English:", " Bisaya:"])
+    return response.choices[0].message.content 
 
 async def generate_itinerary(num_days):
     itinerary = ""
@@ -55,7 +68,7 @@ async def generate_itinerary(num_days):
         place_to_visit = random.choice(places_to_visit)
         user_input = f"On day {day}, I will visit {place_to_visit}"
         with st.spinner("Generating itinerary..."):
-            response = await bisaya_chatbot_response(user_input)
+            response = await guide_chatbot_response(user_input)
         itinerary += f"Day {day} Itinerary:\n"
         itinerary += f"MatyoAI's Response: {response}\n\n"
     return itinerary
