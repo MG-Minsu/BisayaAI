@@ -6,6 +6,17 @@ import asyncio
 client = AsyncOpenAI(api_key=st.secrets["API_key"])
 
 
+async def generate_itinerary(num_days):
+    itinerary = ""
+    for day in range(1, num_days + 1):
+        user_input = f"On day {day}, I will visit "
+        with st.spinner("Generating itinerary..."):
+            response = await bisaya_chatbot_response(user_input)
+        itinerary += f"Day {day} Itinerary:\n"
+        itinerary += f"MatyoAI's Response: {response}\n\n"
+    return itinerary
+
+
 async def bisaya_chatbot_response(user_input):
     # Constructing a prompt for a chatbot that replies in Bisaya
     prompt_text = "You are a chatbot that converses in Bisaya all throughout the conversation because you are a tourist guide in General Santos City and knows all the history."
@@ -29,17 +40,6 @@ async def bisaya_chatbot_response(user_input):
     return response.choices[0].message.content  # Correcting the key from 'text' to match the API response structure
 
 
-def generate_itinerary(user_inputs):
-    itinerary = ""
-    for i, input_text in enumerate(user_inputs, start=1):
-        itinerary += f"Day {i} Itinerary:\n"
-        itinerary += f"Your Input: {input_text}\n"
-        with st.spinner("Generating response..."):
-            response = asyncio.run(bisaya_chatbot_response(input_text))
-        itinerary += f"MatyoAI's Response: {response}\n\n"
-    return itinerary
-
-
 def setup_streamlit_app():
     # Use a more descriptive title and add a subtitle to provide context
     st.image('gensan.png', width=730)
@@ -50,16 +50,10 @@ def setup_streamlit_app():
     # Prompt the user for the number of vacation days
     num_days = st.number_input("How many days will you be on vacation?", min_value=1, max_value=30, value=1, step=1)
 
-    # Collect user inputs for each day's itinerary
-    user_inputs = []
-    for day in range(1, num_days + 1):
-        user_input = st.text_input(f"Day {day} - Your itinerary:")
-        user_inputs.append(user_input.strip())
-
     # Generate and display the entire itinerary
     if st.button("Generate Itinerary"):
+        itinerary = asyncio.run(generate_itinerary(num_days))
         st.subheader("Generated Itinerary:")
-        itinerary = generate_itinerary(user_inputs)
         st.write(itinerary)
 
 
