@@ -1,10 +1,30 @@
 import streamlit as st
 from openai import AsyncOpenAI
 import asyncio
+import random
 
 # Set the API key using Streamlit's secrets management
 client = AsyncOpenAI(api_key=st.secrets["API_key"])
 
+# Places to visit in General Santos City
+places_to_visit = [
+    "Plaza Heneral Santos",
+    "General Santos City Museum",
+    "Our Lady of Peace and Good Voyage Parish Church",
+    "T'boli Weaving Center",
+    "Tuna Auction Market",
+    "Fish Port Complex",
+    "Queen Tuna Park",
+    "Sanchez Peak",
+    "Balut Island",
+    "Isabela City",
+    "Sun City Suites",
+    "Lemlunay Resort",
+    "Island Buenavista",
+    "Pioneer Avenue",
+    "St. Paul Novitiate Park",
+    "General Santos City Hall"
+]
 
 async def bisaya_chatbot_response(user_input):
     # Constructing a prompt for a chatbot that replies in Bisaya
@@ -32,11 +52,12 @@ async def bisaya_chatbot_response(user_input):
 async def generate_itinerary(num_days):
     itinerary = ""
     for day in range(1, num_days + 1):
-        user_input = f"On day {day}, I will visit "
+        place_to_visit = random.choice(places_to_visit)
+        user_input = f"On day {day}, I will visit {place_to_visit}"
         with st.spinner("Generating itinerary..."):
             response = await bisaya_chatbot_response(user_input)
         itinerary += f"Day {day} Itinerary:\n"
-        itinerary += f"{response}\n\n"
+        itinerary += f"MatyoAI's Response: {response}\n\n"
     return itinerary
 
 
