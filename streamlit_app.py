@@ -50,7 +50,7 @@ async def bisaya_chatbot_response(user_input):
 
 async def guide_chatbot_response(user_input):
     # Constructing a prompt for a chatbot that replies in Bisaya
-    prompt_text = "You suggest the itineary for General Santos City"
+    prompt_text = "You are a chatbot that converses in Bisaya all throughout the conversation because you are a tourist guide in General santos City and knows all the history"
 
     # Correct API call using the latest API version
     response = await client.chat.completions.create(
@@ -70,7 +70,7 @@ async def generate_itinerary(num_days):
         with st.spinner("Generating itinerary..."):
             response = await guide_chatbot_response(user_input)
         itinerary += f"Day {day} Itinerary:\n"
-        itinerary += f"MatyoAI's Response: {response}\n\n"
+        itinerary += f"{response}\n\n"
     return itinerary
 
 
