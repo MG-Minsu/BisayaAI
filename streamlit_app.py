@@ -56,14 +56,14 @@ async def guide_chatbot_response(user_input):
 
 async def generate_itinerary(dates):
     itinerary = ""
-    for date in dates:
-        place_to_visit = places_to_visit[i % len(places_to_visit)] 
-        user_input = f"On {date}, I will visit {place_to_visit}. Can you provide a description of the place?"
+    for i, date in enumerate(dates):
+        place_to_visit = places_to_visit[i % len(places_to_visit)]  # Loop through the places list
+        user_input = f"On {date}, I will visit {place_to_visit}. Can you provide a description of this place?"
         with st.spinner("Generating itinerary..."):
             response = await guide_chatbot_response(user_input)
-        itinerary += f"Itinerary for {date}:\n\n"
-        itinerary += f"Place: {place_to_visit}\n\n"
-        itinerary += f"Description: {response}\n\n"
+        itinerary += f"Itinerary for {date}:\n"
+        itinerary += f"Place: {place_to_visit}\n"
+        itinerary += f"Description:\n{response}\n\n"
     return itinerary
 
 def setup_streamlit_app():
