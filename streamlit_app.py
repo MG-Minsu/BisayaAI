@@ -43,7 +43,7 @@ async def bisaya_chatbot_response(user_input):
 
 async def guide_chatbot_response(user_input):
     # Constructing a prompt for a chatbot that replies in Bisaya
-    prompt_text = "You speak Bisaya. You provide an itinerary per day in General Santos City, including a description of each place."
+    prompt_text = "You speak Bisaya. You provide itinerary per day in General Santos City, including a description of each place."
 
     response = await client.chat.completions.create(
         model="gpt-3.5-turbo", 
@@ -53,7 +53,8 @@ async def guide_chatbot_response(user_input):
         ],
         stop=["\n", " English:", " Bisaya:"])
     return response.choices[0].message.content 
-    
+
+# Iterate through places_to_visit list in order without random selection
 async def generate_itinerary(dates):
     itinerary = ""
     for i, date in enumerate(dates):
@@ -98,7 +99,7 @@ def setup_streamlit_app():
     if st.button("Generate Itinerary"):
         itinerary = asyncio.run(generate_itinerary(vacation_dates))
         st.subheader("Generated Itinerary:")
-        st.write(itinerary)
+        st.markdown(itinerary, unsafe_allow_html=True)
 
 if __name__ == "__main__":
     # Run the Streamlit app
