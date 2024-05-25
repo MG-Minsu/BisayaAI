@@ -57,7 +57,7 @@ async def guide_chatbot_response(user_input):
 async def generate_itinerary(dates):
     itinerary = ""
     for date in dates:
-        place_to_visit = random.choice(places_to_visit)
+        place_to_visit = places_to_visit[i % len(places_to_visit)] 
         user_input = f"On {date}, I will visit {place_to_visit}. Can you provide a description of the place?"
         with st.spinner("Generating itinerary..."):
             response = await guide_chatbot_response(user_input)
