@@ -43,7 +43,7 @@ async def bisaya_chatbot_response(user_input):
 
 async def guide_chatbot_response(user_input):
     # Constructing a prompt for a chatbot that replies in Bisaya
-    prompt_text = "You speak Bisaya. You provide itinerary per day in General Santos City, including a description of activities at each place."
+    prompt_text = "You speak Bisaya. You provide an itinerary per day in General Santos City, including a description of each place."
 
     response = await client.chat.completions.create(
         model="gpt-3.5-turbo", 
@@ -58,12 +58,12 @@ async def generate_itinerary(dates):
     itinerary = ""
     for date in dates:
         place_to_visit = random.choice(places_to_visit)
-        user_input = f"On {date}, I will visit {place_to_visit}. Can you provide a description of activities I can do there?"
+        user_input = f"On {date}, I will visit {place_to_visit}. Can you provide a description of the place?"
         with st.spinner("Generating itinerary..."):
             response = await guide_chatbot_response(user_input)
-        itinerary += f"**Itinerary for {date}:**\n"
-        itinerary += f"**Place:** {place_to_visit}\n"
-        itinerary += f"**Activities:**\n{response}\n\n"
+        itinerary += f"Itinerary for {date}:\n\n"
+        itinerary += f"Place: {place_to_visit}\n\n"
+        itinerary += f"Description: {response}\n\n"
     return itinerary
 
 def setup_streamlit_app():
