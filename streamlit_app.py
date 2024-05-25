@@ -43,7 +43,7 @@ async def bisaya_chatbot_response(user_input):
 
 async def guide_chatbot_response(user_input):
     # Constructing a prompt for a chatbot that replies in Bisaya
-    prompt_text = "You are a chatbot that converses in Bisaya all throughout the conversation because you are a tourist guide in General Santos City and know all the history."
+    prompt_text = "You speak bisaya. You provide itinerary per Day in general Santos City"
 
     response = await client.chat.completions.create(
         model="gpt-3.5-turbo", 
