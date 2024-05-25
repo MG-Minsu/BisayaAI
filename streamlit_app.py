@@ -1,6 +1,7 @@
 import streamlit as st
 from openai import AsyncOpenAI
 import asyncio
+import random
 from datetime import datetime, timedelta
 
 # Set the API key using Streamlit's secrets management
@@ -25,6 +26,20 @@ places_to_visit = [
     "St. Paul Novitiate Park",
     "General Santos City Hall"
 ]
+
+async def bisaya_chatbot_response(user_input):
+    # Constructing a prompt for a chatbot that replies in Bisaya
+    prompt_text = "You are a chatbot that converses in Bisaya all throughout the conversation because you are a tourist guide in General Santos City and knows all the history."
+
+    response = await client.chat.completions.create(
+        model="gpt-3.5-turbo", 
+        messages=[
+            {"role": "system", "content": prompt_text},
+            {"role": "assistant", "content": "You are a chatbot that converses in Bisaya all throughout the conversation. You give advice to the user on the history, culture, tourist spots, and food of General Santos City."},
+            {"role": "user", "content": user_input}
+        ],
+        stop=["\n", " English:", " Bisaya:"])
+    return response.choices[0].message.content  
 
 async def guide_chatbot_response(user_input):
     # Constructing a prompt for a chatbot that replies in Bisaya
@@ -85,19 +100,6 @@ def setup_streamlit_app():
         itinerary = asyncio.run(generate_itinerary(vacation_dates))
         st.subheader("Generated Itinerary:")
         st.markdown(itinerary, unsafe_allow_html=True)
-
-async def bisaya_chatbot_response(user_input):
-    # Constructing a prompt for a chatbot that focuses on generating the itinerary list only
-    prompt_text = "You are a chatbot that converses in Bisaya and focuses on generating an itinerary list for General Santos City. Provide detailed descriptions for each place."
-
-    response = await client.chat.completions.create(
-        model="gpt-3.5-turbo",
-        messages=[
-            {"role": "system", "content": prompt_text},
-            {"role": "user", "content": user_input}
-        ],
-        stop=["\n", " English:", " Bisaya:"])
-    return response.choices[0].message.content  
 
 if __name__ == "__main__":
     # Run the Streamlit app
