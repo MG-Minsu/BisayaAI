@@ -3,8 +3,10 @@ from openai import AsyncOpenAI
 import asyncio
 import random
 
+# Set the API key using Streamlit's secrets management
 client = AsyncOpenAI(api_key=st.secrets["API_key"])
 
+# Places to visit in General Santos City
 places_to_visit = [
     "Plaza Heneral Santos",
     "General Santos City Museum",
@@ -25,6 +27,7 @@ places_to_visit = [
 ]
 
 async def bisaya_chatbot_response(user_input):
+    # Constructing a prompt for a chatbot that replies in Bisaya
     prompt_text = "You are a chatbot that converses in Bisaya all throughout the conversation because you are a tourist guide in General santos City and knows all the history."
 
     response = await client.chat.completions.create(
@@ -45,9 +48,10 @@ async def bisaya_chatbot_response(user_input):
     return response.choices[0].message.content  
 
 async def guide_chatbot_response(user_input):
- 
+    # Constructing a prompt for a chatbot that replies in Bisaya
     prompt_text = "You are a chatbot that converses in Bisaya all throughout the conversation because you are a tourist guide in General santos City and knows all the history"
 
+  
     response = await client.chat.completions.create(
         model="gpt-3.5-turbo", 
         messages=[
@@ -70,6 +74,7 @@ async def generate_itinerary(num_days):
 
 
 def setup_streamlit_app():
+
     st.image('gensan.png', width=730)
     st.title("MatyoAI: A Taga-Gensan Chatbot")
     st.write("Welcome to MatyoAI! Here, you'll find a chatbot ready to guide you through the wonders of General Santos City, speaking in the warm tones of the local Bisaya language. Created by Mathew Gabriel, with the invaluable assistance of a college professor, Sir Louie Cervantes. This project is from the College of Information and Communications Technology - WVSU. ")
@@ -80,6 +85,7 @@ def setup_streamlit_app():
     if 'history' not in st.session_state:
         st.session_state.history = ""
 
+    # Chat interface
     user_input = st.text_input("You:")
     if st.button("Send"):
         if user_input.strip() != "":
@@ -88,8 +94,10 @@ def setup_streamlit_app():
             st.session_state.history += f"You: {user_input}\nMatyoAI: {response}\n"
             conversation_history.text_area("Conversation:", value=st.session_state.history, height=300)
 
+    # Prompt the user for the number of vacation days
     num_days = st.number_input("How many days will you be on vacation?", min_value=1, max_value=30, value=1, step=1)
 
+    # Generate and display the entire itinerary
     if st.button("Generate Itinerary"):
         itinerary = asyncio.run(generate_itinerary(num_days))
         st.subheader("Generated Itinerary:")
@@ -97,4 +105,5 @@ def setup_streamlit_app():
 
 
 if __name__ == "__main__":
+    # Run the Streamlit app
     setup_streamlit_app()
