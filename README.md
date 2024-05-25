@@ -12,35 +12,6 @@ MatyoAI provides tourists with personalized and authentic experiences in General
 - **Tourist Guide**: Get recommendations for places to visit in General Santos City.
 - **Itinerary Generator**: Generate a custom itinerary for your vacation.
 
-## Installation
-
-1. Clone the repository:
-    ```bash
-    git clone https://github.com/yourusername/matyoai.git
-    ```
-2. Navigate to the project directory:
-    ```bash
-    cd matyoai
-    ```
-3. Install the required packages:
-    ```bash
-    pip install -r requirements.txt
-    ```
-4. Set up Streamlit's secrets management to include your OpenAI API key. Create a `.streamlit` directory and a `secrets.toml` file within it:
-    ```plaintext
-    [secrets]
-    API_key = "your_openai_api_key"
-    ```
-
-## Usage
-
-1. Run the Streamlit app:
-    ```bash
-    streamlit run app.py
-    ```
-
-2. Navigate to the local server URL provided by Streamlit.
-
 ## Navigating the App
 
 ### Home Page
@@ -63,10 +34,6 @@ MatyoAI provides tourists with personalized and authentic experiences in General
 ## Contributing
 
 We welcome contributions! Please fork the repository and submit pull requests.
-
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
 ## Acknowledgements
 
